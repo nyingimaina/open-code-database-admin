@@ -7,3 +7,4 @@ dist/
 Thumbs.db
 bun.lock
 package-lock.json
+ANNOUNCEMENT.md
