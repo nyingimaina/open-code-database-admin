@@ -1,0 +1,9 @@
+{
+  "default": {
+    "Server": "localhost",
+    "User Id": "root",
+    "Password": "pentium1.2",
+    "Database": "Eternity",
+    "Charset": "utf8"
+  }
+}

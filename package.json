@@ -1,0 +1,49 @@
+{
+  "name": "database-admin",
+  "version": "1.1.2",
+  "description": "Global multi-database tool plugin for OpenCode. MySQL, PostgreSQL, SQL Server, SQLite. Write consent required. Author NOT liable.",
+  "main": "dist/db-tool.js",
+  "types": "dist/db-tool.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyingimaina/open-code-database-admin"
+  },
+  "homepage": "https://github.com/nyingimaina/open-code-database-admin#readme",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "mysql",
+    "mariadb",
+    "postgresql",
+    "postgres",
+    "sqlserver",
+    "sqlite",
+    "database",
+    "database-tool",
+    "sql-tool"
+  ],
+  "author": "Nyingi Maina",
+  "license": "MIT",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/nyingimaina"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.0.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "mssql": "^11.0.1",
+    "mysql2": "^3.11.0",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^11.5.0",
+    "@types/mssql": "^9.1.9",
+    "@types/pg": "^8.20.0",
+    "typescript": "^5.9.3"
+  }
+}
