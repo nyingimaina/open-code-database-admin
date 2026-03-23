@@ -1,6 +1,6 @@
 {
   "name": "database-admin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Multi-database tool plugin for OpenCode. MySQL, PostgreSQL, SQL Server, SQLite. Write consent required.",
   "main": "dist/db-tool.js",
   "types": "dist/db-tool.d.ts",
