@@ -97,52 +97,21 @@ function formatIdentity(identity: UserIdentity): string {
 // ============ Consent Management ============
 
 const LIABILITY_TEXT = `
-═══════════════════════════════════════════════════════════════
-⚠️⚠️⚠️  IMPORTANT LEGAL DISCLAIMER & LIABILITY WAIVER  ⚠️⚠️⚠️
-═══════════════════════════════════════════════════════════════
+CONSENT TO WRITE OPERATIONS
 
-By executing any write operations (INSERT, UPDATE, DELETE, DROP,
-TRUNCATE, ALTER, CREATE TABLE, GRANT, REVOKE, etc.) using this
-plugin, you (the "User") acknowledge and agree to the following:
+By granting consent for write operations (INSERT, UPDATE, DELETE,
+DROP, TRUNCATE, ALTER, CREATE, GRANT, REVOKE, etc.), you:
 
-1. IRREVERSIBLE CONSEQUENCES
-   - Data loss and corruption can be PERMANENT and IRREVERSIBLE
-   - Database failures may occur
-   - There is NO UNDO for write operations
+1. Acknowledge that database write operations carry inherent risks
+2. Accept sole responsibility for any consequences of such operations
+3. Agree to indemnify and hold harmless Nyingi Maina from any claims
+   arising from your use of this plugin
+4. Confirm you have appropriate backups and understand that data
+   loss or corruption may occur
 
-2. FULL RESPONSIBILITY
-   - YOU bear SOLE RESPONSIBILITY for ALL consequences
-   - This includes data loss, corruption, system failures
-   - All business risks are yours alone
+This software is provided "AS IS" without warranty.
 
-3. NO LIABILITY TO AUTHOR
-   - THE AUTHOR (Nyingi Maina) AND ALL CONTRIBUTORS are
-     explicitly DISCLAIMED from ANY and ALL LIABILITY
-   - No warranty, express or implied, is provided
-   - Plugin is provided "AS IS"
-
-4. YOUR INDEMNIFICATION OBLIGATION
-   - You agree to INDEMNIFY and HOLD HARMLESS the author
-   - This includes any claims, damages, losses, or expenses
-   - arising from your use of this plugin
-
-5. REQUIRED PRECAUTIONS
-   - BACKUP your data BEFORE any write operation
-   - Test queries in non-production environments first
-   - Verify queries before execution
-
-6. MONETIZATION NOTICE
-   - This plugin is open source under MIT License
-   - You MAY monetize this plugin or services around it
-   - But author liability remains DISCLAIMED
-
-═══════════════════════════════════════════════════════════════
-
-USE OF THIS PLUGIN FOR WRITE OPERATIONS IS AT YOUR OWN RISK.
-
-IF YOU DO NOT AGREE TO THESE TERMS, DO NOT GRANT CONSENT
-AND DO NOT EXECUTE ANY WRITE OPERATIONS.
-═══════════════════════════════════════════════════════════════
+Contact: nyingimaina@gmail.com
 `;
 
 function generateSessionToken(): string {

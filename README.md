@@ -1,40 +1,20 @@
 # database-admin
 
-Global multi-database tool plugin for OpenCode.
+A multi-database tool plugin for OpenCode that provides direct SQL access.
 
-> By Nyingi Maina
-
----
-
-## ⚠️ DISCLAIMER / LIABILITY WAIVER
-
-**USE AT YOUR OWN RISK.**
-
-This plugin executes SQL queries directly against your databases. **IRREVERSIBLE DATA LOSS OR CORRUPTION CAN OCCUR.**
-
-By using this plugin, you acknowledge and agree that:
-
-- **YOU ARE SOLELY RESPONSIBLE** for any data loss, corruption, or damage resulting from use of this plugin
-- The author(s) and contributors **CANNOT BE HELD LIABLE** for any data loss, corruption, or damages
-- **BACKUP YOUR DATA** before executing any write queries (INSERT, UPDATE, DELETE, DROP, TRUNCATE, ALTER)
-- Always verify queries before execution
-- Test in development/staging environments first
-
-**NO WARRANTIES** are provided. This plugin is provided "AS IS".
+**Supported Databases:** MySQL, MariaDB, PostgreSQL, SQL Server, SQLite
 
 ---
 
-## ⚠️ WRITE CONSENT REQUIRED
+## Write Consent
 
-**Before executing any write operations (INSERT, UPDATE, DELETE, DROP, etc.), you MUST explicitly grant consent.**
-
-### Grant Consent
+Before executing write operations, you must grant consent:
 
 ```sql
 db { "action": "consent", "grant": true }
 ```
 
-This will display the full liability waiver and enable write operations.
+By granting consent, you acknowledge that write operations carry risk and accept responsibility for your data.
 
 ### Check Consent Status
 
@@ -47,6 +27,16 @@ db { "action": "consent" }
 ```sql
 db { "action": "consent", "grant": false }
 ```
+
+---
+
+## Terms
+
+This software is provided "AS IS" without warranty. By using it, you agree to indemnify the author from claims arising from your use.
+
+**Contact:** nyingimaina@gmail.com
+
+**License:** MIT (see LICENSE) | [Commercial License](COMMERCIAL_LICENSE.md)
 
 ### Why Consent?
 

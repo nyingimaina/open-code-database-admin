@@ -6,49 +6,30 @@ This project is released under the **MIT License** for open source and personal 
 
 - Repository: https://github.com/nyingimaina/open-code-database-admin
 - npm: https://www.npmjs.com/package/database-admin
+- Contact: nyingimaina@gmail.com
 
-## Commercial Use License
+## Commercial License
 
-For commercial use of database-admin in a business environment, a separate commercial license is required.
-
-### What Constitutes Commercial Use
-
-Commercial licensing is required for:
+A separate commercial license is required for business use, including:
 
 - Use within a for-profit organization
-- Use in providing commercial services to third parties
-- Use in SaaS or cloud-based offerings
-- Teams of 6 or more developers
+- Use in providing commercial services
+- Use in SaaS or cloud offerings
+- Teams of 6+ developers
 
-### Commercial License Terms
+**Contact:** nyingimaina@gmail.com
 
-Contact the author for commercial licensing:
+Commercial licenses include unlimited seats, priority support, and optional indemnification.
 
-- **Author:** Nyingi Maina
-- **GitHub Issues:** https://github.com/nyingimaina/open-code-database-admin/issues
-- **Email:** Available via GitHub profile
-- **Sponsors:** https://github.com/sponsors/nyingimaina
+## Terms of Use
 
-### Commercial License Benefits
+By using this software, you acknowledge that:
 
-- Unlimited seats for your organization
-- Priority support
-- Source code access
-- Custom development and integration services
-- Indemnification (separate agreement)
+- The software is provided "AS IS" without warranty
+- You understand that database operations carry risk and accept responsibility for your own data
+- You will backup data before write operations
+- Write operations require explicit consent via the built-in consent system
 
-## Liability Disclaimer
+**Indemnification:** Users agree to indemnify and hold harmless the author from claims arising from use of this software.
 
-Regardless of license type, this software is provided "AS IS" without warranty. The author cannot be held liable for any damages arising from use of this software.
-
-Users are required to:
-
-1. Accept liability for data operations
-2. Grant explicit consent before write operations
-3. Backup data before any write operations
-4. Test in non-production environments first
-
-## Questions
-
-For licensing questions or to request a commercial license:
-https://github.com/nyingimaina/open-code-database-admin/issues
+For questions: https://github.com/nyingimaina/open-code-database-admin/issues

@@ -1,7 +1,7 @@
 {
   "name": "database-admin",
-  "version": "1.1.2",
-  "description": "Global multi-database tool plugin for OpenCode. MySQL, PostgreSQL, SQL Server, SQLite. Write consent required. Author NOT liable.",
+  "version": "1.2.0",
+  "description": "Multi-database tool plugin for OpenCode. MySQL, PostgreSQL, SQL Server, SQLite. Write consent required.",
   "main": "dist/db-tool.js",
   "types": "dist/db-tool.d.ts",
   "repository": {
@@ -25,7 +25,7 @@
     "database-tool",
     "sql-tool"
   ],
-  "author": "Nyingi Maina",
+  "author": "Nyingi Maina <nyingimaina@gmail.com>",
   "license": "MIT",
   "funding": {
     "type": "individual",
