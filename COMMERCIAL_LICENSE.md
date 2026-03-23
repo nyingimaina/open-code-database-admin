@@ -19,17 +19,10 @@ A separate commercial license is required for business use, including:
 
 **Contact:** nyingimaina@gmail.com
 
-Commercial licenses include unlimited seats, priority support, and optional indemnification.
+Commercial licenses include unlimited seats, priority support, and indemnification options.
 
-## Terms of Use
+## Write Protection
 
-By using this software, you acknowledge that:
-
-- The software is provided "AS IS" without warranty
-- You understand that database operations carry risk and accept responsibility for your own data
-- You will backup data before write operations
-- Write operations require explicit consent via the built-in consent system
-
-**Indemnification:** Users agree to indemnify and hold harmless the author from claims arising from use of this software.
+The consent system is a safety feature that protects users from accidental data loss by requiring conscious acknowledgment of write operations. For commercial deployments, additional safeguards and support are available through the commercial license.
 
 For questions: https://github.com/nyingimaina/open-code-database-admin/issues

@@ -6,15 +6,35 @@ A multi-database tool plugin for OpenCode that provides direct SQL access.
 
 ---
 
-## Write Consent
+## Write Protection
 
-Before executing write operations, you must grant consent:
+Before executing write operations, you must grant consent. This is a safety feature designed to protect your data by ensuring you consciously acknowledge each operation.
+
+### How It Works
+
+When you attempt a write operation (INSERT, UPDATE, DELETE, DROP, etc.) for the first time, you will be prompted to grant consent. This gives you a moment to verify the operation before it executes.
+
+Your identity (name, email, hostname) is recorded with each consent grant for audit purposes.
+
+### Grant Consent
 
 ```sql
 db { "action": "consent", "grant": true }
 ```
 
-By granting consent, you acknowledge that write operations carry risk and accept responsibility for your data.
+### Consent Levels
+
+Choose the level that matches your workflow:
+
+- **Global:** Permanent across all projects
+- **Project:** Permanent for a specific project
+- **Session:** Valid for 24 hours
+- **Operation:** Required for each write (most cautious)
+
+```sql
+-- Set consent level
+db { "action": "consent", "grant": true, "scope": "session" }
+```
 
 ### Check Consent Status
 
@@ -30,52 +50,19 @@ db { "action": "consent", "grant": false }
 
 ---
 
-## Terms
+## Installation
 
-This software is provided "AS IS" without warranty. By using it, you agree to indemnify the author from claims arising from your use.
-
-**Contact:** nyingimaina@gmail.com
-
-**License:** MIT (see LICENSE) | [Commercial License](COMMERCIAL_LICENSE.md)
-
-### Why Consent?
-
-Write operations can cause **IRREVERSIBLE DATA LOSS**. The consent mechanism ensures you understand and accept the risks before any writes are executed.
-
----
-
-## Supported Databases
-
-| Database | Status |
-|----------|--------|
-| MySQL | ✅ |
-| MariaDB | ✅ |
-| PostgreSQL | ✅ |
-| SQL Server | ✅ |
-| SQLite | ✅ |
-
-## Features
-
-- **Auto-Discovery** - Automatically finds connection strings from project configs
-- **Multi-Database** - Works with MySQL, PostgreSQL, SQL Server, SQLite
-- **Smart Parsing** - Handles various connection string formats
-- **Universal** - Works globally across all projects
-
----
-
-## Quick Start
-
-### Step 1: Install Plugin
-
-Add to `~/.config/opencode/opencode.jsonc`:
-
-```jsonc
+```json
 {
   "plugins": ["database-admin"]
 }
 ```
 
-### Step 2: (Optional) Configure Connections
+---
+
+## Configuration
+
+### Connection Strings
 
 Create `~/.config/opencode/db-connections.json`:
 
@@ -90,291 +77,46 @@ Create `~/.config/opencode/db-connections.json`:
 }
 ```
 
-### Step 3: Query
+### Auto-Discovery
 
-```sql
-db { "query": "SELECT * FROM users LIMIT 5" }
-```
+The plugin automatically discovers connections from:
 
----
-
-## Auto-Discovery
-
-The plugin automatically scans project directories for connection strings:
-
-| Framework | Files Scanned |
-|-----------|---------------|
-| .NET / ASP.NET Core | `appsettings.json`, `appsettings.Development.json` |
-| Node.js | `.env`, `.env.local`, `.env.development` |
-| Python / Django / Flask | `.env`, `settings.py` |
-| Java / Spring Boot | `application.properties` |
-
-### Discover Available Connections
-
-```sql
-db { "connection": "discover" }
-```
-
-Returns a list of found connections with hints on how to use them.
-
----
-
-## Manual Configuration
-
-### MySQL / MariaDB
-
-**File:** `~/.config/opencode/db-connections.json`
-
-```json
-{
-  "myapp": {
-    "Type": "mysql",
-    "Server": "localhost",
-    "Port": 3306,
-    "Database": "mydb",
-    "User Id": "root",
-    "Password": "secret"
-  }
-}
-```
-
-**Alternative: Key=Value String**
-
-```json
-{
-  "myapp": {
-    "Server=localhost;Database=mydb;User Id=root;Password=secret"
-  }
-}
-```
-
-### PostgreSQL
-
-```json
-{
-  "myapp": {
-    "Type": "postgresql",
-    "Host": "localhost",
-    "Port": 5432,
-    "Database": "mydb",
-    "User": "postgres",
-    "Password": "secret"
-  }
-}
-```
-
-**Key=Value Format:**
-
-```json
-{
-  "myapp": {
-    "host=localhost;port=5432;database=mydb;user=postgres;password=secret"
-  }
-}
-```
-
-### SQL Server
-
-```json
-{
-  "myapp": {
-    "Type": "sqlserver",
-    "Server": "localhost",
-    "Port": 1433,
-    "Database": "mydb",
-    "User Id": "sa",
-    "Password": "secret"
-  }
-}
-```
-
-**Key=Value Format:**
-
-```json
-{
-  "myapp": {
-    "Server=localhost;Database=mydb;User Id=sa;Password=secret"
-  }
-}
-```
-
-### SQLite
-
-```json
-{
-  "myapp": {
-    "Type": "sqlite",
-    "Database": "/path/to/database.sqlite"
-  }
-}
-```
-
-**Short Format:**
-
-```json
-{
-  "myapp": {
-    "file:///path/to/database.sqlite"
-  }
-}
-```
+- .NET: appsettings.json, appsettings.Development.json
+- Node.js: .env, .env.local
+- Python: .env, settings.py
+- Java: application.properties
 
 ---
 
 ## Usage Examples
 
-### Basic Queries
+### Query databases
 
 ```sql
--- Query with default connection
+-- Auto-discover connection
 db { "query": "SELECT * FROM users LIMIT 5" }
 
--- Query with specific connection
-db { "query": "SELECT * FROM orders", "connection": "myapp" }
+-- Specific connection
+db { "query": "SELECT * FROM orders", "connection": "production" }
 
--- Insert/Update/Delete
-db { "query": "UPDATE items SET price = 99 WHERE id = 1" }
+-- Direct URL
+db { "query": "SELECT 1", "connection": "mysql://root:pass@localhost:3306/mydb" }
 ```
 
-### Using URLs
+### Discover available connections
 
 ```sql
--- MySQL URL
-db { "query": "SELECT * FROM items", "connection": "mysql://root:pass@localhost:3306/mydb" }
-
--- PostgreSQL URL
-db { "query": "SELECT * FROM users", "connection": "postgresql://postgres:pass@localhost:5432/mydb" }
-
--- SQL Server URL
-db { "query": "SELECT * FROM products", "connection": "mssql://sa:pass@localhost:1433/mydb" }
-
--- SQLite URL
-db { "query": "SELECT * FROM todos", "connection": "sqlite:///path/to/db.sqlite" }
-```
-
-### Project Directory
-
-```sql
--- Scan specific project
-db { "query": "SELECT 1", "projectDir": "/path/to/project" }
-```
-
-### Discover Connections
-
-```sql
--- List all auto-discovered connections
 db { "connection": "discover" }
 ```
 
 ---
 
-## Connection Priority
+## Terms
 
-1. Explicit `connection` parameter (URL or named)
-2. Named connection from `db-connections.json`
-3. Auto-discovered from project configs
-4. `default` from `db-connections.json`
+This software is provided "AS IS" without warranty.
 
----
+By granting consent for write operations, you acknowledge responsibility for verifying your queries before execution.
 
-## Framework-Specific Setup
+**Contact:** nyingimaina@gmail.com
 
-### .NET / ASP.NET Core
-
-**appsettings.json:**
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=mydb;User Id=root;Password=secret"
-  }
-}
-```
-
-The plugin will automatically find this when you run queries in that project.
-
-### Node.js (Next.js, Express, etc.)
-
-**.env:**
-
-```
-DATABASE_URL=mysql://root:pass@localhost:3306/mydb
-```
-
-Or:
-
-```
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_DATABASE=mydb
-MYSQL_USER=root
-MYSQL_PASSWORD=secret
-```
-
-### Python (Django, Flask)
-
-**.env:**
-
-```
-DATABASE_URL=postgresql://postgres:pass@localhost:5432/mydb
-```
-
-**settings.py (Django):**
-
-```python
-DATABASE_URL = 'postgresql://postgres:pass@localhost:5432/mydb'
-```
-
-### Java / Spring Boot
-
-**application.properties:**
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/mydb
-spring.datasource.username=root
-spring.datasource.password=secret
-```
-
-Or for PostgreSQL:
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/mydb
-```
-
----
-
-## For Developers
-
-```bash
-# Install dependencies
-bun install
-
-# Build
-bun run build
-
-# Publish
-npm publish --access public
-```
-
----
-
-## Author
-
-Nyingi Maina
-
----
-
-## License
-
-This project is released under the **MIT License** for open source and personal use.
-
-For **commercial use** within a business environment, a separate commercial license is required. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) for details.
-
-### Commercial Use Includes
-
-- Use within for-profit organizations
-- Use in providing commercial services
-- Use in SaaS or cloud offerings
-- Teams of 6+ developers
-
-Contact for commercial licensing: https://github.com/nyingimaina
+**License:** MIT (see LICENSE) | [Commercial License](COMMERCIAL_LICENSE.md)

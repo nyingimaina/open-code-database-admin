@@ -99,15 +99,24 @@ function formatIdentity(identity: UserIdentity): string {
 const LIABILITY_TEXT = `
 CONSENT TO WRITE OPERATIONS
 
-By granting consent for write operations (INSERT, UPDATE, DELETE,
-DROP, TRUNCATE, ALTER, CREATE, GRANT, REVOKE, etc.), you:
+Write operations (INSERT, UPDATE, DELETE, DROP, TRUNCATE, ALTER,
+CREATE, GRANT, REVOKE, etc.) can permanently modify or destroy data.
 
-1. Acknowledge that database write operations carry inherent risks
-2. Accept sole responsibility for any consequences of such operations
-3. Agree to indemnify and hold harmless Nyingi Maina from any claims
-   arising from your use of this plugin
-4. Confirm you have appropriate backups and understand that data
-   loss or corruption may occur
+The consent system exists to protect your data by:
+
+1. Ensuring you consciously acknowledge each write operation
+2. Recording your identity and intent for audit purposes
+3. Preventing accidental execution of destructive queries
+4. Giving you a moment to verify the operation is correct
+
+Before granting consent, please ensure you have:
+
+- Verified the query is correct
+- Backed up relevant data
+- Tested in a non-production environment
+
+Your identity (name, email, hostname) will be recorded with each consent grant
+for audit and accountability purposes.
 
 This software is provided "AS IS" without warranty.
 
